@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+  }
+
+  body {
+    direction: rtl;
+    text-align: right;
+    /* ✅ تحديث خلفية التطبيق للهوية الجديدة */
+    background-color: #003837; 
+    color: #F0FDF4;
+  }
+
+  .font-almarai {
+    font-family: 'Almarai', sans-serif;
+  }
+
+  .font-cairo {
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  /* ✅ تحديث متغيرات الألوان للهوية الجديدة */
+  .bg-ghanem-dark {
+    background-color: #003837;
+  }
+
+  .bg-ghanem-card {
+    background-color: #002b2a;
+  }
+
+  .bg-ghanem-accent {
+    background-color: #05E59F;
+  }
+
+  .text-ghanem-primary {
+    color: #FFFFFF;
+  }
+
+  .text-ghanem-secondary {
+    color: #94a3b8;
+  }
+
+  .border-ghanem-accent {
+    border-color: rgba(5, 229, 159, 0.15);
+  }
+
+  .text-ghanem-accent {
+    color: #05E59F;
+  }
+
+  /* 🔥 كود القنص: إخفاء أي دائرة تحميل واستبدالها باللوجو النابض 🔥 */
+  
+  /* 1. إخفاء الأيقونات الدوارة (Lucide Loader) */
+  .animate-spin, 
+  [class*="lucide-loader"] {
+    display: none !important;
+  }
+
+  /* 2. حقن اللوجو النابض في أي حاوية تحميل (مثل شاشة App.tsx أو أزرار التحميل) */
+  .animate-spin:parent, 
+  .min-h-screen.flex.items-center.justify-center .text-center::before,
+  button[disabled] .animate-spin::before {
+    content: "";
+    display: block;
+    width: 60px; /* حجم اللوجو في التحميل */
+    height: 60px;
+    margin: 0 auto 15px;
+    background-image: url('./assets/logo3.svg'); /* ✅ تأكد من صحة المسار */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: gh-pulse-global 1.5s ease-in-out infinite;
+  }
+}
+
+/* ✅ تعريف أنيميشن النبض العالمي */
+@keyframes gh-pulse-global {
+  0%, 100% { 
+    transform: scale(0.85); 
+    opacity: 0.6; 
+    filter: drop-shadow(0 0 0px #05E59F);
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 1; 
+    filter: drop-shadow(0 0 15px rgba(5, 229, 159, 0.4));
+  }
+}
+
+/* إضافة لمسة احترافية للانتقالات بين الصفحات */
+.animate-shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
